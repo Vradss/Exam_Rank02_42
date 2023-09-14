@@ -39,6 +39,8 @@ int main()
 	char *s2 = "sabrina";
 
 	printf("mia: s1 = %s, s2 = %s, result = %lu\n", s1 , s2 , ft_strspn(s1,s2));
-	printf("original : s1 = %s, s2 = %s, result = %lu", s1, s2 , strspn(s1,s2));
+	printf("original : s1 = %s, s2 = %s, result = %lu\n", s1, s2 , strspn(s1,s2));
+	printf("original : s1 = %s, s2 = %s, result = %lu\n", s1, s2 , strcspn(s1,s2));
+
 	return 0;
 }
