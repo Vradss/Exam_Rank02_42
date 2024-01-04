@@ -28,12 +28,13 @@ typedef struct    s_list
 
 void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
 {
-	t_list	*list_ptr;
+	t_list *ptr;
 
-	list_ptr = begin_list;
-	while(list_ptr)
+	ptr = begin_list;
+	
+	while(ptr)
 	{
-		(*f)(list_ptr->data);
-		list_ptr = list_ptr->next;
+		(*f)(ptr->data);
+		ptr = ptr->next;
 	}
 }
