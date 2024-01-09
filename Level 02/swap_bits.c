@@ -13,11 +13,16 @@ unsigned char	swap_bits(unsigned char octet);
 
 Example:
 
-  1 byte
+1 byte
 _____________
  0100 | 0001
      \ /
      / \
  0001 | 0100
  
- */
+*/
+
+unsigned char	swap_bits(unsigned char octet)
+{
+    return ((octet >> 4) | (octet << 4));
+}
