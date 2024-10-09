@@ -30,11 +30,11 @@ void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
 {
 	t_list *ptr;
 
-	ptr = begin_list;
+	ptr = begin_list; // Inicializamos el puntero al inicio de la lista
 	
 	while(ptr)
 	{
-		(*f)(ptr->data);
-		ptr = ptr->next;
+		(*f)(ptr->data); // Aplicamos la función 'f' al dato del nodo actual
+		ptr = ptr->next; // Pasamos al siguiente nodo de la lista
 	}
 }
