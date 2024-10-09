@@ -62,11 +62,11 @@ void ft_putnbr(int num)
 
 int main(int argc, char *argv[])
 {
-    int i = 1;
-    int num = ft_atoi(argv[1]);
 
     if (argc == 2)
     {
+        int i = 1;
+        int num = ft_atoi(argv[1]);
         while (i <= 9)
         {
             ft_putnbr(i);
