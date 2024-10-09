@@ -41,10 +41,10 @@ int main(int argc, char *argv[])
 	int i;
 	int num;
 
-	i = 2; //first prime number
-	num = atoi(argv[1]); //convert str to int
 	if (argc == 2)
 	{
+		i = 2; //first prime number
+		num = atoi(argv[1]); //convert str to int
 		if (num == 1)
 			printf("1");
 		while (num >= i)
