@@ -29,3 +29,19 @@ _____________
  * 
  * @return the reverse of the bits of the octet.
  */
+
+
+
+unsigned char	reverse_bits(unsigned char octet)
+{
+	int i = 8;
+	unsigned char res = 0;
+
+	while (i > 0)		/* Looping through the octet, dividing it by 2 each time, and adding the remainder to the result. */
+	{
+		res = res * 2 + (octet % 2);	/* Adding the remainder of the octet divided by 2 to the result. */
+		octet = octet / 2;
+		i--;
+	}
+	return (res);
+}
