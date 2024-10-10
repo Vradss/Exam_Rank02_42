@@ -28,32 +28,27 @@ $
 
 #include <unistd.h>
 
-void ft_putstr(char *str)
+#include <unistd.h>
+
+int main(int argc, char *argv[])
 {
+    char *s1 = argv[1];
+    char *s2 = argv[2];
     int i = 0;
-    while(str[i])
-    {
-        write(1, &str[i], 1);
-        i++;
-    }
-}
+    int j = 0;
 
-
-int main(int argc , char *argv[])
-{
     if (argc == 3)
     {
-        int i = 0;
-        int j = 0;
-
-        while(argv[2][j])
+        // Recorre s2 para buscar los caracteres de s1
+        while (s2[j])
         {
-            if (argv[2][j++] == argv[1][i])
-                i += 1;
+            if (s1[i] == s2[j])
+                i++; //si lo encontramos, avanzamos
+            j++;
         }
-        if(!argv[1][i])
-            ft_putstr(argv[1]);
+        if (s1[i] == '\0') // Verifica que todos los caracteres de s1 se han encontrado en s2
+            write(1, s1, i); // aquí imprimimos todos los char de s1 encontrados en s2
     }
     write(1, "\n", 1);
-    return (0);
+    return 0;
 }
