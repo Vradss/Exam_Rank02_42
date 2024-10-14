@@ -19,29 +19,26 @@ Examples:
 - With (0, -3) you will return an array containing 0, -1, -2 and -3. */
 
 
-#include <unistdio.h>
+#include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-int absolute_value(int num)
+int abs(int num)
 {
     if(num < 0)
         num *= -1;
     return(num);
 }
 
-
 int     *ft_range(int start, int end)
 {
-    int i = 0; // indice para llenar el res array
-    int len = absolute_value((end - start)) + 1; // longitud de array y +1 para que incluya extremos
-    int *res = (int *)malloc(sizeof(int) * len);
-
-    if(res == NULL)
-        return NULL;
+    int i = 0;
+    int len = abs(end - start) + 1;
+    int *res = malloc(sizeof(int) * len);
 
     if (start <= end)
     {
-        while(i < len)
+        while( i < len)
         {
             res[i] = start;
             start++;
@@ -50,36 +47,28 @@ int     *ft_range(int start, int end)
     }
     else
     {
-        while (i < len)
+        while(i < len)
         {
-            res[i]= start;
+            res[i] = start;
             start--;
             i++;
         }
-        
     }
-    return(res);
+    return (res);
 }
 
-#include <stdio.h>
+// int main()
+// {
+//     int start = -5;
+//     int end = 4;
+//     int len = abs(end - start) + 1;
+//     int i = 0;
+//     int *res = ft_range(start, end);
 
-int main() {
-    int start = 1;
-    int end = -3;
-
-    int *result = ft_range(start, end);
-
-    if (result != NULL) {
-        printf("Array resultante: [");
-        for (int i = 0; i <= end - start + 1; i++) {
-            printf("%d", result[i]);
-        }
-        printf("]\n");
-
-        free(result);  // Liberar la memoria asignada dinámicamente
-    } else {
-        printf("Error al asignar memoria.\n");
-    }
-
-    return 0;
-}
+//     while ( i < len)
+//     {
+//         printf("%d-->", res[i]);
+//         i++;
+//     }
+//     return 0 ; 
+// }
