@@ -25,28 +25,32 @@ $
 */
 
 #include <unistd.h>
-#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
     char *s1 = argv[1];
+    // Array para marcar caracteres ya impresos inicializamos en 0
+    char printed[256] = {0}; 
     char *s2 = argv[2];
+    int i = 0;
+    int j ;
 
     if (argc == 3)
     {
-        while(*s1 != '\0')
+        while (s1[i])
         {
-            char *temp = s2; //creamos un puntero para inicializar en s2
-            while(*temp != '\0')
+            j = 0;
+            while (s2[j])
             {
-                if ( *s1 == *temp) //si el caracter s1 es igual a temp, lo imprime
+                if (s1[i] == s2[j] && printed[s1[i]] == 0) //Si carácter es igual en ambas cadenas y no ha sido impreso anteriormente 
                 {
-                    write(1, s1,1);
-                    break; // sale del bucle cuando encuentra coincidencia 
+                    write(1, &s1[i], 1);
+                    printed[s1[i]] = 1; // Marcamos el carácter como impreso
+                    break;
                 }
-                temp++; // avanzamos puntero al siguiente char en s2
+                j++;
             }
-            s1++; // avanza puntero al siguiente char en s1
+            i++;
         }
     }
     write(1, "\n", 1);
