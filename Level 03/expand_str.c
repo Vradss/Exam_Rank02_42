@@ -27,65 +27,32 @@ $>
 */
 
 #include <unistd.h>
+#include <stdio.h>
 
-int main(int argc , char *argv[])
+int main(int argc, char *argv[])
 {
+    char *str = argv[1];
     int i = 0;
     int space;
 
-    if (argc == 2)
+    if ( argc == 2)
     {
-        while(argv[1][i] == ' ' || argv[1][i] == '\t')
+        while (str[i] == ' ' || str[i] == '\t')
             i++;
-        while(argv[1][i])
+        while(str[i])
         {
-            if(argv[1][i] == ' ' || argv[1][i] == '\t')
+            if (str[i] == ' ' || str[i] == '\t')
                 space = 1;
-            if (!(argv[1][i] == ' ' || argv[1][i] == '\t'))
+            if (str[i] != ' ' && str[i] != '\t')
             {
                 if (space)
                     write(1, "   ", 3);
                 space = 0;
-                write(1, &argv[1][i], 1);
-            }
-            i++;
-        }
-    }
-    write(1, "\n", 1);
-    return (0);
-}
-
-
-///
-
-int main (int argc, char *argv [])
-{
-    char *str = argv[1];
-    int i =  0;
-    int first_word = 1;
-    
-    
-    if (argc == 2)
-    {
-        while (str[i] == ' ' || str[i] == '\t')
-            i++;
-        while (str[i] != '\0')
-        {
-            if (str[i] == ' ' || str[i] == '\t') 
-            {
-                while (str[i] == ' ' || str[i] == '\t')
-                    i++;
-                if (str[i] && !first_word)
-                    write(1, "   ", 3);
-            }
-            if (str[i] && (str[i] != ' ' || str[i] != '\t'))
-            {
                 write(1, &str[i], 1);
-                first_word = 0;
-                i++;
             }
+            i++;
         }
     }
     write(1, "\n", 1);
-    return 0; 
+    return 0;
 }
