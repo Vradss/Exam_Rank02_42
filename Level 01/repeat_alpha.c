@@ -30,32 +30,33 @@ $>
 */
 #include <unistd.h>
 
-int main(int argc , char *argv[])
+#include <unistd.h>
+
+int main(int argc, char *argv[])
 {
     char *str = argv[1];
     int i = 0;
-    int k = 0;
-    
-    if (argc == 2)
+    int k ;
+
+    if ( argc == 2)
     {
-        while(str[i] != '\0')
+        while ( str[i])
         {
-            if ( str[i] >= 'A' && str[i] <= 'Z')
-                k = str[i] - 64;
-            else if ( str[i] >= 'a' && str[i] <= 'z')
+            if (str[i] >= 'A' && str[i] <= 'Z')
+                k = str[i] - 64; // hacemos que el alfabeto sea A=1 , B = 2 ..
+            else if (str[i] >= 'a' && str[i] <= 'z')
                 k = str[i] - 96;
             else
-                write(1,&str[i], 1);
+                write(1, &str[i], 1); //imprime caracteres que no son letras
             while( k >= 1)
             {
-                write(1, &str[i], 1);
+                write(1, &str[i], 1); //bucle para iterar la cantidad de veces a imprimir
                 k--;
             }
             i++;
         }
     }
-    write(1,"\n", 1);
-    return 0;
+    write(1, "\n", 1);
 }
 
 
