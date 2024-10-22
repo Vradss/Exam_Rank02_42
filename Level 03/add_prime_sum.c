@@ -72,13 +72,13 @@ int main(int argc, char *argv[])
         int num = atoi(argv[1]);
         int sum = 0;
         
-        while ( num > 0)
+        while ( num > 0) //necesitamos los inferiores 
         {
-            if (is_prime(num))
+            if (is_prime(num)) //Si num es primo, lo suma;
                 sum = sum + num;
-            num--;
+            num--; //retrocedemos al inferior de num
         }
-        putnbr(sum);
+        putnbr(sum); //imprimimos la suma de los primos
     }
     write(1, "\n", 1);
     return 0;

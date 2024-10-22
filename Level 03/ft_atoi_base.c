@@ -20,15 +20,12 @@ Your function must be declared as follows:
 int	ft_atoi_base(const char *str, int str_base);
 */
 
-#include <unistdio.h>
-#include <stdlib.h>
-
-void    lowercase(char *str)
+void lowercase(char *str)
 {
-    int i = 0;
+    int  i = 0;
     while(str[i])
     {
-        if (str[i] >= 'A' && str[i] <= 'Z' )
+        if ( str[i] >= 'A' && str[i] <= 'Z')
             str[i] += 32;
         i++;
     }
@@ -39,12 +36,12 @@ int ft_strchr(char *str, char c)
     int i = 0;
     while(str[i])
     {
-        if (str[i] == c)
-            return (i);
+        if ( str[i] == c)
+            return i ;
         i++;
     }
+    return -1;
 }
-
 
 int	ft_atoi_base(const char *str, int str_base)
 {
@@ -54,30 +51,42 @@ int	ft_atoi_base(const char *str, int str_base)
     int sign = 1;
     char base[16] = "0123456789abcdef";
 
-    if(str_base > 1 && str_base <= 16)
+    //verificamos que la base es válida
+    if ( str_base >= 2 && str_base <= 16)
     {
-        lowercase((char *)str);
-        while(str[i] >= 9 && str[i] <= 13 || str[i] == ' ')
+        lowercase((char *) str);
+        while ( str[i] == ' ' || (str[i] >= 7 && str[i] <= 13))
             i++;
-        if(str[i] == '-')
-            sign = -1;
-        if(str[i] == '-' || str[i] == '+')
-            i++;
-        while(str[i] && ((j = ft_strchr(base,str[i])) >= 0))
+        if ( str[i] == '-')
         {
-            res *= str_base;
-            res += j;
+            sign = -1;
+            i++;
+        }
+        else if ( str[i] == '+')
+            i++;
+        
+        //Al procesar j >= 0, aseguramos que el caracter esta en la cadena base.
+        //Si fuera menor <, procesaría caracteres inválidos
+        while(str[i] && (j = ft_strchr(base, str[i])) >= 0)
+        {
+            res = res * str_base;
+            res = res + j;
             i++;
         }
     }
-    return (sign * res);
+    return( res * sign);
 }
 
-int main(int argc, char *argv[])
-{
-    if (argc == 3)
-    {
-        printf("%d", ft_atoi_base(argv[1],atoi(argv[2])));
-    }
-    return (0);
-}
+
+// #include <stdio.h>
+
+// int main()
+// {
+//     char str[] = "7B";
+//     int base = 16;
+
+//     printf("%d\n", ft_atoi_base(str, base));
+//     return 0;
+// }
+
+//Output: 123
