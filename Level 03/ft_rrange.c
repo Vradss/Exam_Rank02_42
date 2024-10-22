@@ -20,19 +20,17 @@ Examples:
 
 #include <stdlib.h>
 
-int absolute_value(int num)
+int abs(int num)
 {
-    int i = 0;
-    while(num < i)
-        return(-num);
+    if(num < 0)
+        num *= -1;
     return(num);
 }
-
 
 int     *ft_rrange(int start, int end)
 {
     int i = 0;
-    int len = (absolute_value(end - start) + 1);
+    int len = (abs(end - start) + 1);
     int *res = (int *)malloc(sizeof(int) * len);
 
     while (i < len)
@@ -56,26 +54,19 @@ int     *ft_rrange(int start, int end)
 
 #include <stdio.h>
 
-int main() {
-    int start = 0;
-    int end = -3;
+// int main()
+// {
+//     int start = -5;
+//     int end = 4;
+//     int len = abs(end - start) + 1;
+//     int i = 0;
+//     int *res = ft_rrange(start, end);
 
-    int *result = ft_rrange(start, end);
+//     while ( i < len)
+//     {
+//         printf("%d-->", res[i]);
+//         i++;
+//     }
+//     return 0 ; 
+// }
 
-    if (result != NULL) {
-        printf("Array resultante: [");
-        for (int i = 0; i <= end - start; i++) {
-            printf("%d", result[i]);
-            if (i < end - start) {
-                printf(", ");
-            }
-        }
-        printf("]\n");
-
-        free(result);  // Liberar la memoria asignada dinámicamente
-    } else {
-        printf("Error al asignar memoria.\n");
-    }
-
-    return 0;
-}
