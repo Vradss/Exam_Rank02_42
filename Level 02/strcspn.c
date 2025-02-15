@@ -48,3 +48,40 @@ int main()
 	printf("original : s1 = %s, s2 = %s, result = %lu", s1, s2 , strcspn(s1,s2));
 	return 0;
 }
+
+
+//v2
+
+
+size_t	ft_strcspn(const char *s, const char *reject)
+{
+    size_t i = 0;
+    size_t j ;
+
+    while(s[i])
+    {
+        j = 0;
+        while(reject[j])
+        {
+            if ( s[i] == reject[j])
+                return (i);
+            j++;
+        }
+        i++;
+    }
+    return i;
+}
+
+#include <stdio.h>
+#include <string.h>
+int main(int argc, char *argv[])
+{
+    (void)argc;
+    char *s1 = argv[1];
+    char *accept = argv[2];
+    
+    printf("%lu\n", ft_strcspn(s1, accept));
+    printf("%lu\n", strcspn(s1, accept));
+
+    return 0 ;
+}
