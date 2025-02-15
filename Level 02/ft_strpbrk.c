@@ -55,3 +55,33 @@ int main()
 
 //ubica la letra en s1 y devuelve string desde ese punto
 output : adis
+
+
+
+//V2
+
+	
+char *ft_strpbrk(const char *s, const char *charset)
+{
+    int i = 0;
+    while (s[i])
+    {
+        int j = 0;
+        while(charset[j])
+        {
+            if ( s[i] == charset[j])
+                return(char *)&s[i];
+            j++;
+        }
+        i++;
+    }
+    return NULL;
+}
+
+int main(int argc, char *argv[])
+{
+    printf("%s\n", ft_strpbrk(argv[1], argv[2]));
+    printf("%s\n", strpbrk(argv[1], argv[2]));
+    return 0 ;
+}
+
