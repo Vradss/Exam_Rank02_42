@@ -53,3 +53,42 @@ int main(int argc , char *argv[])
 	write(1, "\n", 1);
 	return (0);
 }
+
+
+//v2
+
+
+#include <unistd.h>
+
+int main(int argc, char *argv[])
+{
+    char *s1 = argv[1];
+    char *s2 = argv[2];
+    int i = 0;
+    char printed[256] = {0};
+
+    if ( argc == 3)
+    {
+        while(s1[i])
+        {
+            if (printed[s1[i]] == 0)
+            {
+                write(1, &s1[i], 1);
+                printed[s1[i]] = 1;
+            }
+            i++;
+        }
+        i = 0;
+        while(s2[i])
+        {
+            if (printed[s2[i]]== 0)
+            {
+                write(1, &s2[i], 1);
+                printed[s2[i]] = 1;
+            }
+            i++;
+        }
+    }
+    write(1, "\n", 1);
+    return 0;
+}
