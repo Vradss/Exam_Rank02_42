@@ -52,21 +52,57 @@ int     *ft_rrange(int start, int end)
 
 }
 
-#include <stdio.h>
+//v2
 
-// int main()
-// {
-//     int start = -5;
-//     int end = 4;
-//     int len = abs(end - start) + 1;
-//     int i = 0;
-//     int *res = ft_rrange(start, end);
 
-//     while ( i < len)
-//     {
-//         printf("%d-->", res[i]);
-//         i++;
-//     }
-//     return 0 ; 
-// }
+int abs(int n)
+{
+    if ( n < 0)
+        n = n * -1;
+    return n;
+}
+
+int     *ft_rrange(int start, int end)
+{
+    int len = abs(end - start) + 1;
+    int *res = malloc(sizeof(int) * len);
+    int i = 0;
+
+    if ( start <= end)
+    {
+        while ( i < len)
+        {
+            res[i] = end;
+            end--;
+            i++;
+        }
+    }
+    else if (start >= end)
+    {
+        while ( i < len)
+        {
+            res[i] = end;
+            end++;
+            i++;
+        }
+    }
+    return res;
+}
+
+int main()
+{
+    int start = 15;
+    int end = 8;
+    int len = abs(end - start) + 1;
+    int *res = ft_rrange(start, end);
+    int i = 0;
+
+    while ( i < len)
+    {
+        printf("%d--", res[i]);
+        i++;
+    }
+    return 0;
+
+}
 
