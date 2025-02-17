@@ -29,7 +29,7 @@ $>
 
 #include <unistd.h>
 
-int rstr_capitalizer(char *str)
+void rstr_capitalizer(char *str)
 {
     int i = 0;
     while(str[i])
