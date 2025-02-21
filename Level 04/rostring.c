@@ -34,37 +34,47 @@ $
 $> */
 
 #include <unistd.h>
+#include <stdio.h>
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
-    if (argc == 2)
+    char *s1 = argv[1];
+    int i = 0;
+    int start;
+    int end;
+    int spaceFinal;
+
+    if ( argc > 1)
     {
-        int start;
-        int end;
-        int duplicate; 
-        int i = 0;
+        while ( s1[i] == ' ' || s1[i] == '\t')
+            i++;
+        start = i; // aquí guardamos el primer char de la primera palabra
+        while ( s1[i] && s1[i] != ' ' && s1[i] != '\t')
+            i++;
+        end = i - 1; // aquí guardamos el ultim char de la primera palabra
 
-        while(argv[1][i] == ' ' || argv[1][i] == '\t')
+        //imprimimos el resto de palabras
+        while ( s1[i] == ' ' || s1[i] == '\t')
             i++;
-        start = i;
-        while(argv[1][i] && argv[1][i] != '\t' && argv[1][i] != ' ')
-            i++;
-        end = i - 1;
-        while(argv[1][i] == ' ' || argv[1][i] == '\t')
-            i++;
-
-        while ( argv[1][i])
+        while (s1[i])
         {
-            duplicate = 1;
-            while(argv[1][i] == ' ' && argv[1][i + 1] == ' ')
+            spaceFinal = 1;
+            while ( s1[i] == ' ' && s1[i + 1] == ' ') //elimina espacios consecutivos.
                 i++;
-            write(1, &argv[1][i++], 1);
+            write(1, &s1[i], 1);
+            i++;
         }
-        if (duplicate == 1)
+        //añadimos ese espacio final
+        if (spaceFinal == 1)
             write(1, " ", 1);
-        while(start <= end)
-            write(1, &argv[1][start++], 1);
-    }
-    write (1, "\n", 1);
 
+        //print primera palabra
+        while ( start <= end)
+        {
+            write(1, &s1[start], 1);
+            start ++;
+        }
+    }
+    write(1, "\n", 1);
+    return 0;
 }
