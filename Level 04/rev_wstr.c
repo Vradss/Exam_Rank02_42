@@ -31,35 +31,43 @@ $> */
 #include "stdio.h"
 #include "unistd.h"
 
-int main (int argc , char *argv[])
+#include <unistd.h>
+
+int main(int argc, char *argv[])
 {
+    char *s1 = argv[1];
     int start;
     int end;
     int i = 0;
 
-    if (argc == 2)
+    if ( argc == 2)
     {
-
-        while(argv[1][i] != '\0')
+        while (s1[i]) //voy hasta el final del str
             i++;
-        //iteramos inverso
-        while ( i >= 0)
+        while ( i >= 0) //iteramos alreves
         {
-            if (argv[1][i] == '\0' || argv[1][i] == ' ' || argv[1][i] == '\t')
+            // Saltamos caracteres vacíos o separadores al final
+            while( s1[i] == '\0' || s1[i] == ' ' ||s1[i] == '\t' )
                 i--;
-            //guardamos posicion actual en end
-            end = i;
-            while(argv[1][i] && argv[1][i] != ' ' && argv[1][i] != '\t')
+            end = i; //guardamos posicion actual como final de palabra
+            //verificamos inicio de la palabra
+            while (s1[i] && s1[i] != ' ' && s1[i] != '\t')
                 i--;
             start = i + 1;
+
+            // Variable para verificar si es la primera palabra    
             int flag;
             flag = start;
-            while (start <= end)
-                write(1, &argv[1][start++], 1);
+            while ( start <= end)
+            {
+                write(1, &s1[start], 1);
+                start++;
+            }
             if (flag != 0)
                 write(1, " ", 1);
         }
-    }
-    write(1,"\n", 1);
 
+    }
+    write(1, "\n", 1);
+    return 0;
 }
