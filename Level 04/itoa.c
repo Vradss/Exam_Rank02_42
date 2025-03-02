@@ -22,52 +22,56 @@ char	*ft_itoa(int nbr);*/
 #include <stdio.h>
 #include <stdlib.h>
 
-int ft_len(int num)
+// n <= 0, while ( n!= 0)
+
+#include <limits.h>
+int len_num(int n)
 {
-	int i = 0;
-	if(num <= 0)
-		++i;
-	while (num != 0)
-	{
-		++i;
-		num = num / 10;
-	}
-	return (i);
+    int i = 0;
+    if ( n <= 0)
+        i++;
+    while(n != 0)
+    {
+        i++;
+        n = n / 10;
+    }
+    return i;
 }
+
+int ft_abs (int n)
+{
+    if ( n <= 0)
+        return n = n * -1;
+    return n;
+}
+
+#include <stdlib.h>
+
+// num < 0, num == 0, num != 0
 
 char	*ft_itoa(int nbr)
 {
-	int			len;
-	char		*str;
-	long		num;
-	int			i;
+    int len = len_num(nbr);
+    char *res = (char *)malloc(sizeof(char *) * len + 1);
+    int num = nbr;
 
-	num = nbr;
-	len = ft_len(nbr);
-	str = malloc(sizeof(char) * (len + 1));
-	str[len] = '\0';
+    res[len] = '\0';
 
-	//si el numero es negativo
-	if (num < 0)
-	{
-		str[0] = '-';
-		num = -num; //se convierte positivo para conversión
-		i = 1;
-	}
-	//si la cadena es 0
-	else if (num == 0)
-		str[0] = '0';
-	//si es + y no 0, se establece en 0 para llenar la cadena desde el primer char
-	i = 0;
-	while( num != 0)
-	{
-		--len; //decrementamos para llenar desde el final
-		str[len] = num % 10 + '0'; //digito menos significativo
-		num = num / 10; // al dividir / 10 se pasa al siguiente digito
-	}
-	return(str);
-	
+    if ( num < 0)
+        res[0] = '-';
+    else if ( num == 0)
+        res[0] = '0';
+
+    while(num != 0)
+    {
+        len--;
+        res[len] = ft_abs(num % 10) + '0';
+        num = num / 10;
+    }
+    return res;
 }
+
+
 int main()
 {
 	int i = -2147483648;
