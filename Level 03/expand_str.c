@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
     char *str = argv[1];
     int i = 0;
     int space;
+    int first = 1;
 
     if ( argc == 2)
     {
@@ -45,10 +46,11 @@ int main(int argc, char *argv[])
                 space = 1;
             if (str[i] != ' ' && str[i] != '\t')
             {
-                if (space)
+                if (space && !first)
                     write(1, "   ", 3);
                 space = 0;
                 write(1, &str[i], 1);
+                first = 0;
             }
             i++;
         }
@@ -56,3 +58,5 @@ int main(int argc, char *argv[])
     write(1, "\n", 1);
     return 0;
 }
+
+
