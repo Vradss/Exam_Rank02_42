@@ -20,18 +20,20 @@ $
 */
 #include <unistd.h>
 
-int main(int argc , char *argv[])
+
+int main(int argc, char *argv[])
 {
-    char *str = argv[1];
+    char *s1 = argv[1];
     int i = 0;
 
     if ( argc == 2)
     {
-        while (str[i] != '\0')
+        while ( s1[i])
             i++;
-        while ( i >= 1)
+        i--;
+        while ( i >= 0)
         {
-            write(1, &str[i - 1], 1);
+            write(1, &s1[i], 1);
             i--;
         }
     }
